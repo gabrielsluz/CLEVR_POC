@@ -1,3 +1,38 @@
+import torch
+import clevr_poc.utils.logging as logging
+
+
+logger = logging.get_logger(__name__)
+
+
+class Clevr(torch.utils.data.Dataset):
+    """
+    CLEVR dataset class
+    __getitem__ returns a tensor (image) and an associated question
+    The dataset is indexed by question, not by image.
+    The main data structure is a list of dicts. Each dict contains an image path, 
+    the question and the answer.
+    TODO: How to tokenize the question => use a premade tool
+    TODO: Possible answers for CLEVR => get from dataset, and then hardcode
+    """
+
+    def __init__(self, mode):
+        """
+        mode = train, val or test
+        """
+        assert mode in [
+            "train",
+            "val",
+            "test",
+        ], "Split '{}' not supported for Clevrer_des".format(mode)
+        self.mode = mode
+
+        logger.info("Constructing Clevrer_des {}...".format(mode))
+    
+    def __getitem__(self, index):
+        return 0
+
+
 """
 The data is organized into the following directory structure:
 
